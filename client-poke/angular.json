@@ -66,6 +66,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "latest-angular:build",
+			      "port": 3246
+          },
           "configurations": {
             "production": {
               "browserTarget": "client-poke:build:production"
