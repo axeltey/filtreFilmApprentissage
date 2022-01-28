@@ -17,11 +17,18 @@ public class ListPokemon {
     public ListPokemon(){
     }
 
-    @GetMapping("/pokemons/{name}-{type}-{id}")
+    @GetMapping("/pokemons/{name}-{id}")
     @ResponseBody
-    public Map<String,String> getPokemons(@PathVariable("name") String name,@PathVariable("type") String type,@PathVariable("id") int id){
-        System.out.println(name + " " + type + " " + id);
-        String uri ="https://pokeapi.co/api/v2/pokemon?limit=151&offset=0";
+    public Map<String,String> getPokemons(@PathVariable("name") String name,@PathVariable("id") int id){
+        //String uri ="https://pokeapi.co/api/v2/pokemon?limit=151&offset=0";
+        String uri ="https://pokeapi.co/api/v2/";
+        if(id!=-1){
+            uri=uri+"pokemon/"+id;
+        }else if(name!="null"){
+            uri=uri+"pokemon/"+name;
+        }else{
+            uri ="https://pokeapi.co/api/v2/pokemon?limit=151&offset=0";
+        }
         RestTemplate rest=new RestTemplate();
         String res =rest.getForObject(uri,String.class);
         Map<String,String> map=new HashMap<String,String>();

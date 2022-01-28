@@ -10,15 +10,9 @@ import { AppelAPIService } from '../services/appel-api.service';
 export class RecherchePokeComponent implements OnInit {
 
   name =new FormControl('');
-  type =new FormControl('');
   id =new FormControl('');
 
-  pokemons: any[]=[
-    {"name":"Charizar"},
-    {"name":"arceus"},
-    {"name":"bulbizar"},
-    {"name":"carapuce"},
-  ]
+  pokemons: any
 
   constructor(private api:AppelAPIService) { }
 
@@ -27,19 +21,15 @@ export class RecherchePokeComponent implements OnInit {
 
   appelAPI(){
     let localName:String='null';
-    let localtype:String='null';
-    let localId:number=0;
+    let localId:number=-1;
     if (this.name.value!=''){
       localName=this.name.value;
-    }
-    if (this.type.value!=''){
-      localtype=this.type.value;
     }
     if (this.id.value!=''){
       localId=this.id.value;
     }
-    this.api.getPokemons(localName,localtype,localId).subscribe(data =>{
-      this.pokemons.push(data["listPoke"]);
+    this.api.getPokemons(localName,localId).subscribe(data =>{
+      this.pokemons= JSON.parse(data["listPoke"]);
     })
   }
 

@@ -1,11 +1,10 @@
 <div >
     <input type="text" id="name" maxlength="30" placeholder="name" [formControl]="name">
-    <input type="text" id="type" maxlength="30" placeholder="type" [formControl]="type">
     <input type="number" id="id" placeholder="id" [formControl]="id">
     <button (click)="appelAPI()">Valider</button>
 </div>
 <ul>
     <li *ngFor="let pokemon of pokemons">
-      {{ pokemon}}
+      {{ pokemon }}
     </li>
 </ul>
