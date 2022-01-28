@@ -11,6 +11,6 @@ export class AppelAPIService {
   constructor(private httpClient: HttpClient) {}
 
   getPokemons(name: String,id: number): Observable<any> {
-    return this.httpClient.get<any>(environment.apiUrl + '/pokemons/' + name +"-"+ id);
+    return this.httpClient.get<any>(environment.apiUrl + '/pokemons/' + name +"-"+ id.toString());
   }
 }

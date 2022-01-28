@@ -12,7 +12,8 @@ export class RecherchePokeComponent implements OnInit {
   name =new FormControl('');
   id =new FormControl('');
 
-  pokemons: any
+  pokemons: any[]=[]
+  listinfo:any
 
   constructor(private api:AppelAPIService) { }
 
@@ -21,7 +22,7 @@ export class RecherchePokeComponent implements OnInit {
 
   appelAPI(){
     let localName:String='null';
-    let localId:number=-1;
+    let localId:number=0;
     if (this.name.value!=''){
       localName=this.name.value;
     }
@@ -29,7 +30,8 @@ export class RecherchePokeComponent implements OnInit {
       localId=this.id.value;
     }
     this.api.getPokemons(localName,localId).subscribe(data =>{
-      this.pokemons= JSON.parse(data["listPoke"]);
+      this.listinfo= JSON.parse(data["listPoke"]);
+      this.pokemons.push(this.listinfo.forms[0].name);
     })
   }
 

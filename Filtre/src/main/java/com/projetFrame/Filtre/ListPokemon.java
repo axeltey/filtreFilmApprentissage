@@ -22,7 +22,7 @@ public class ListPokemon {
     public Map<String,String> getPokemons(@PathVariable("name") String name,@PathVariable("id") int id){
         //String uri ="https://pokeapi.co/api/v2/pokemon?limit=151&offset=0";
         String uri ="https://pokeapi.co/api/v2/";
-        if(id!=-1){
+        if(id!=0){
             uri=uri+"pokemon/"+id;
         }else if(name!="null"){
             uri=uri+"pokemon/"+name;
