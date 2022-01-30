@@ -8,6 +8,7 @@ public class FiltrePokeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FiltrePokeApplication.class, args);
+		ListPokemon list=new ListPokemon();
 	}
 
 }

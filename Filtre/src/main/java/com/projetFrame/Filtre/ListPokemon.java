@@ -13,8 +13,9 @@ import java.util.Map;
 @SpringBootApplication
 @RestController
 public class ListPokemon {
-
+    private gestionBdd bdd;
     public ListPokemon(){
+        bdd =new gestionBdd();
     }
 
     @GetMapping("/pokemons/{name}-{id}")
@@ -40,6 +41,6 @@ public class ListPokemon {
 
     @PostMapping(value = "/add_pokemon",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public void addPokeToBdd(@RequestBody Pokemon poke){
-        
+
     }
 }
