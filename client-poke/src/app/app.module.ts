@@ -5,11 +5,12 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RecherchePokeComponent } from './recherche-poke/recherche-poke.component';
+import { SauvPokeComponent } from './sauv-poke/sauv-poke.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
-    RecherchePokeComponent
+    RecherchePokeComponent, SauvPokeComponent
   ],
   imports: [
     BrowserModule,

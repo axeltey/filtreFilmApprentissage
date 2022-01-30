@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { AppelAPIService } from '../services/appel-api.service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-recherche-poke',
@@ -16,7 +15,7 @@ export class RecherchePokeComponent implements OnInit {
   pokemons: any[]=[]
   listinfo:any
 
-  constructor(private api:AppelAPIService,private domSanitizer:DomSanitizer) { }
+  constructor(private api:AppelAPIService) { }
 
   ngOnInit(): void {
   }
@@ -24,11 +23,10 @@ export class RecherchePokeComponent implements OnInit {
   appelAPI(){
     let localName:String='null';
     let localId:number=0;
-    if (this.name.value!=''){
-      localName=this.name.value;
-    }
     if (this.id.value!=''){
       localId=this.id.value;
+    }else if (this.name.value!=''){
+      localName=this.name.value;
     }
     this.api.getPokemons(localName,localId).subscribe(data =>{
       this.listinfo= JSON.parse(data["listPoke"]);
@@ -36,8 +34,8 @@ export class RecherchePokeComponent implements OnInit {
     })
   }
 
-  selec(){
-
+  selec(idx:number){
+    this.api.addPokeToBdd(this.pokemons[idx].name,this.pokemons[idx].img).subscribe();
   }
 
 }

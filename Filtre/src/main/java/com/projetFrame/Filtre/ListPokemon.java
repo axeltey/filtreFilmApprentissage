@@ -1,12 +1,12 @@
 package com.projetFrame.Filtre;
 
+import com.projetFrame.Filtre.model.Pokemon;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.print.attribute.standard.Media;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,5 +36,10 @@ public class ListPokemon {
         Map<String,String> map=new HashMap<String,String>();
         map.put("listPoke",res);
         return map;
+    }
+
+    @PostMapping(value = "/add_pokemon",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public void addPokeToBdd(@RequestBody Pokemon poke){
+        
     }
 }
