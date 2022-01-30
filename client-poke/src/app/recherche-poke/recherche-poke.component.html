@@ -4,7 +4,9 @@
     <button (click)="appelAPI()">Valider</button>
 </div>
 <ul>
-    <li *ngFor="let pokemon of pokemons">
-      {{ pokemon }}
+    <li type="container" *ngFor="let pokemon of pokemons">
+      <p>{{pokemon.name}}</p>
+      <img [src]=pokemon.img>
+      <button (click)="selec()">Sélectionner</button>
     </li>
 </ul>

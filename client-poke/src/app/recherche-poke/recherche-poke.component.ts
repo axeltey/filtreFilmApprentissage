@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AppelAPIService } from '../services/appel-api.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-recherche-poke',
@@ -15,7 +16,7 @@ export class RecherchePokeComponent implements OnInit {
   pokemons: any[]=[]
   listinfo:any
 
-  constructor(private api:AppelAPIService) { }
+  constructor(private api:AppelAPIService,private domSanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
   }
@@ -31,8 +32,12 @@ export class RecherchePokeComponent implements OnInit {
     }
     this.api.getPokemons(localName,localId).subscribe(data =>{
       this.listinfo= JSON.parse(data["listPoke"]);
-      this.pokemons.push(this.listinfo.forms[0].name);
+      this.pokemons.push({"name":this.listinfo.name,"img":this.listinfo.sprites.front_default});
     })
+  }
+
+  selec(){
+
   }
 
 }

@@ -24,11 +24,13 @@ public class ListPokemon {
         String uri ="https://pokeapi.co/api/v2/";
         if(id!=0){
             uri=uri+"pokemon/"+id;
-        }else if(name!="null"){
+        }else if(!name.equals("null")){
             uri=uri+"pokemon/"+name;
         }else{
-            uri ="https://pokeapi.co/api/v2/pokemon?limit=151&offset=0";
+            uri=uri+"pokemon/1";
+            //uri ="https://pokeapi.co/api/v2/pokemon?limit=151&offset=0";
         }
+        System.out.println(uri);
         RestTemplate rest=new RestTemplate();
         String res =rest.getForObject(uri,String.class);
         Map<String,String> map=new HashMap<String,String>();
