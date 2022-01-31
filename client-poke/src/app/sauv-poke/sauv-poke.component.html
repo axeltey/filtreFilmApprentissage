@@ -1,1 +1,9 @@
-<p>fjfjfjfj</p>
+<div >
+    <button (click)="refresh()">Rafraîchir</button>
+</div>
+<ul>
+  <li *ngFor="let pokemon of pokemons" class="onepoke">
+    <p>{{pokemon.name}}</p>
+    <img [src]=pokemon.img>
+  </li>
+</ul>

@@ -12,18 +12,17 @@ public class gestionBdd {
 
     public gestionBdd(){
         try{
-            this.con = DriverManager.getConnection("jdbc:h2:mem:testdb");
+            this.con = DriverManager.getConnection("jdbc:h2:mem:testdb","sa","");
             lienBDD = con.createStatement();
-            var rs = lienBDD.executeUpdate("create table Pokemon (ID int primary key, Name varchar(30) not null, Url varchar(150) not null)");
+            var rs = lienBDD.executeUpdate("create table Pokemon (ID int primary key AUTO_INCREMENT, Name varchar(30) not null, Url varchar(150) not null)");
         }catch (SQLException ex){
-            System.out.println(ex);
+            System.out.println(ex+"\n\n\n\n\n\n\n\n\n\n");
         }
     }
 
     public void addPokemon(Pokemon poke) throws SQLException {
-        PreparedStatement stmt=this.con.prepareStatement("insert into Pokemon (Name, Url) values (?,?)",Statement.SUCCESS_NO_INFO);
-        stmt.setString(1,poke.getName());
-        stmt.setString(2,poke.getImg());
+        System.out.println(this.con);
+        PreparedStatement stmt=this.con.prepareStatement("insert into Pokemon (Name, Url) values ('"+poke.getName()+"','"+poke.getImg()+"')",Statement.RETURN_GENERATED_KEYS);
         stmt.executeUpdate();
     }
 

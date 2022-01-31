@@ -19,6 +19,6 @@ export class AppelAPIService {
   }
 
   getSelectedPokemons(): Observable<any> {
-    return new Observable();
+    return this.httpClient.get<any>(environment.apiUrl + '/pokemonsSelected');
   }
 }
